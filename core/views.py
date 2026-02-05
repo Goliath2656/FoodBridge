@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, ProfileForm
-from .models import DeliveryTask, Task
+from .models import DeliveryTask
 
 
 
@@ -99,26 +99,22 @@ def volunteer_history(request):
     return render(request, 'core/volunteer_history.html', {
         'completed': completed
     })
-
 @login_required
 def accept_task(request, task_id):
-    task = get_object_or_404(Task, id=task_id)
-
+    task = get_object_or_404(DeliveryTask, id=task_id)
     task.volunteer = request.user
     task.status = 'accepted'
     task.save()
+    return redirect('dashboard')
 
-    return redirect('dashboard') 
 
 @login_required
 def complete_task(request, task_id):
-    task = get_object_or_404(Task, id=task_id)
+    task = get_object_or_404(DeliveryTask, id=task_id)
 
-    
     if task.volunteer != request.user:
         return redirect('dashboard')
 
     task.status = 'completed'
     task.save()
-
     return redirect('dashboard')

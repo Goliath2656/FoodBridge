@@ -45,10 +45,6 @@ class RegisterForm(forms.ModelForm):
                 'placeholder': 'Email address'
             }),
         }
-    
-from django.db import models
-from django.contrib.auth.models import User
-
 
 class DeliveryTask(models.Model):
     STATUS_CHOICES = [
