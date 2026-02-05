@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<section class="hero-section text-center text-white d-flex align-items-center">
+    <div class="container">
+        <h1 class="hero-title mb-3">
+            Bridging Excess Food to Empty Plates
+        </h1>
+        <p class="hero-subtitle mb-4">
+            Donate food • Reduce waste • Feed communities
+        </p>
+        <a href="{% url 'register' %}" class="btn btn-light btn-lg px-4">
+            Get Started
+        </a>
+    </div>
+</section>
+
+
+<section class="container my-5">
+    <div class="row g-4 text-center">
+
+        <div class="col-md-4">
+            <div class="feature-card h-100">
+                <div class="feature-icon">🍱</div>
+                <h4>Donate Food</h4>
+                <p>
+                    Restaurants & individuals can donate surplus food easily and responsibly.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="feature-card h-100">
+                <div class="feature-icon">🏢</div>
+                <h4>NGOs Request</h4>
+                <p>
+                    NGOs request food based on urgency, quantity, and real community needs.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="feature-card h-100">
+                <div class="feature-icon">🚚</div>
+                <h4>Volunteers Deliver</h4>
+                <p>
+                    Volunteers ensure food reaches the right people quickly and safely.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

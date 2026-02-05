@@ -1,0 +1,78 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from .forms import RegisterForm, ProfileForm
+
+
+
+def home(request):
+    return render(request, 'core/home.html')
+
+def list_view(request):
+    return render(request, 'core/list.html')
+
+
+
+def register(request):
+    if request.method == 'POST':
+        uform = RegisterForm(request.POST)
+        pform = ProfileForm(request.POST)
+
+        if uform.is_valid() and pform.is_valid():
+            user = uform.save(commit=False)
+            user.set_password(uform.cleaned_data['password'])
+            user.save()
+
+            
+            profile = user.profile
+            profile.role = pform.cleaned_data['role']
+            profile.phone = pform.cleaned_data['phone']
+            profile.address = pform.cleaned_data['address']
+            profile.save()
+
+            return redirect('login')
+    else:
+        uform = RegisterForm()
+        pform = ProfileForm()
+
+    return render(request, 'core/register.html', {
+        'uform': uform,
+        'pform': pform
+    })
+
+
+
+def login_view(request):
+    if request.method == 'POST':
+        user = authenticate(
+            username=request.POST.get('username'),
+            password=request.POST.get('password')
+        )
+        if user:
+            login(request, user)
+            return redirect('dashboard')
+
+    return render(request, 'core/login.html')
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
+
+
+
+@login_required
+def dashboard(request):
+    role = request.user.profile.role
+
+    if role == 'donor':
+        return render(request, 'core/donor_dashboard.html')
+    elif role == 'ngo':
+        return render(request, 'core/ngo_dashboard.html')
+    elif role == 'volunteer':
+        return render(request, 'core/volunteer_dashboard.html')
+    else:
+        return redirect('home')
+
+
+

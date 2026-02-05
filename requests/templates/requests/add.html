@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+
+      <div class="card shadow-lg p-4">
+        <h3 class="text-center mb-4">📥 Request Food</h3>
+
+        <form method="post" novalidate>
+          {% csrf_token %}
+
+          {% if form.errors %}
+            <div class="alert alert-danger">
+              Please correct the errors below.
+            </div>
+          {% endif %}
+
+          {{ form.non_field_errors }}
+
+          <!-- Food Required -->
+          <div class="mb-3">
+            <label class="form-label">Food Required</label>
+            {{ form.food_required }}
+            {{ form.food_required.errors }}
+          </div>
+
+          <!-- Quantity -->
+          <div class="mb-3">
+            <label class="form-label">Quantity</label>
+            {{ form.quantity }}
+            {{ form.quantity.errors }}
+          </div>
+
+          <!-- Urgency -->
+          <div class="mb-3">
+            <label class="form-label">Urgency</label>
+            {{ form.urgency }}
+            {{ form.urgency.errors }}
+          </div>
+
+          <button type="submit" class="btn btn-warning w-100">
+            Submit Request
+          </button>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

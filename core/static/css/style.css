@@ -1,0 +1,107 @@
+body {
+font-family: 'Segoe UI', sans-serif;
+background-color: #f8f9fa;
+}
+
+
+.hero-section {
+    min-height: 70vh;
+    background: linear-gradient(
+        rgba(25, 135, 84, 0.85),
+        rgba(25, 135, 84, 0.85)
+    ),
+    url("/static/images/food-bg.jpg") center/cover no-repeat;
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.95;
+}
+
+/* =========================
+   Feature Cards
+========================= */
+.feature-card {
+    background: #ffffff;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h4 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+
+.feature-card:hover {
+transform: translateY(-10px);
+}
+
+
+
+/* =========================
+   Dashboard Cards
+========================= */
+.dashboard-card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+
+
+/* MEDIA QUERIES */
+@media (max-width: 576px) {
+.hero-title { font-size: 1.8rem; }
+.hero-subtitle { font-size: 1rem; }
+}
+
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+}

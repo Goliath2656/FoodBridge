@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3>📦 Food Donations</h3>
+
+    {% if request.user.profile.role == 'donor' %}
+      <a href="{% url 'add_donation' %}" class="btn btn-success btn-sm">
+        ➕ Add Donation
+      </a>
+    {% endif %}
+  </div>
+
+  {% if donations %}
+    <div class="row g-4">
+      {% for donation in donations %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+
+            <div class="card-body">
+              <h5 class="card-title">{{ donation.food_name }}</h5>
+
+              <p class="mb-1">
+                <strong>Quantity:</strong> {{ donation.quantity }}
+              </p>
+
+              <p class="mb-1">
+                <strong>Pickup:</strong> {{ donation.pickup_location }}
+              </p>
+
+              <p class="text-muted small">
+                Donated by {{ donation.donor.username }}
+              </p>
+            </div>
+
+            <div class="card-footer bg-light">
+              <span class="badge bg-success">
+                Available
+              </span>
+            </div>
+
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">
+      No donations available at the moment.
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}

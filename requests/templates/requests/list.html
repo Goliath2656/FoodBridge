@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h3 class="mb-4">📋 Food Requests</h3>
+
+  {% if requests %}
+    <div class="row g-4">
+      {% for req in requests %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5>{{ req.food_required }}</h5>
+              <p><strong>Quantity:</strong> {{ req.quantity }}</p>
+              <p><strong>Urgency:</strong> {{ req.urgency }}</p>
+              <p class="text-muted small">
+                Requested by {{ req.ngo.username }}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">
+      No food requests yet.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

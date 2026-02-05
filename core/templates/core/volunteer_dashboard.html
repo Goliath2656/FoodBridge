@@ -1,0 +1,43 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="mb-4">
+        <h2 class="fw-bold">🚚 Volunteer Dashboard</h2>
+        <p class="text-muted">
+            View and manage your assigned pickup and delivery tasks.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-6">
+            <div class="dashboard-card h-100">
+                <div class="dashboard-icon">📍</div>
+                <h5>Pickup & Delivery Tasks</h5>
+                <p>
+                    See food pickups assigned to you and track delivery status.
+                </p>
+                <a href="#" class="btn btn-info w-100">
+                    View Tasks
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="dashboard-card h-100">
+                <div class="dashboard-icon">📦</div>
+                <h5>Completed Deliveries</h5>
+                <p>
+                    Review deliveries you have successfully completed.
+                </p>
+                <a href="#" class="btn btn-outline-info w-100">
+                    History
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

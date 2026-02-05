@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">🏢 NGO Dashboard</h2>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card shadow p-4">
+        <h5>📥 Request Food</h5>
+        <p>Create food requests based on your needs.</p>
+        <a href="{% url 'add_request' %}" class="btn btn-warning">
+          Request Food
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow p-4">
+        <h5>📦 Available Donations</h5>
+        <p>View food donated by donors.</p>
+        <a href="{% url 'list_donations' %}" class="btn btn-success">
+          View Donations
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

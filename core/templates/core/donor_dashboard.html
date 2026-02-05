@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="mb-4">
+        <h2 class="fw-bold">🧑‍🍳 Donor Dashboard</h2>
+        <p class="text-muted">
+            Manage your food donations and help reduce waste.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Add Donation -->
+        <div class="col-md-6">
+            <div class="dashboard-card h-100">
+                <div class="dashboard-icon">➕</div>
+                <h5>Donate Food</h5>
+                <p>Add surplus food details for NGOs to request.</p>
+                <a href="{% url 'add_donation' %}" class="btn btn-success w-100">
+                    Add Donation
+                </a>
+            </div>
+        </div>
+
+        <!-- My Donations -->
+        <div class="col-md-6">
+            <div class="dashboard-card h-100">
+                <div class="dashboard-icon">📦</div>
+                <h5>My Donations</h5>
+                <p>View and track the food you’ve donated.</p>
+                <a href="{% url 'list_donations' %}" class="btn btn-outline-success w-100">
+                    View Donations
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
