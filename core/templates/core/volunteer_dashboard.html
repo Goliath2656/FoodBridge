@@ -1,44 +1,45 @@
 {% extends 'core/base.html' %}
 {% block content %}
+<div class="container mt-5">
 
-<div class="container">
-    <div class="mb-4">
-        <h2 class="fw-bold">🚚 Volunteer Dashboard</h2>
-        <p class="text-muted">
-            View and manage your assigned pickup and delivery tasks.
-        </p>
-    </div>
+<h3>🚚 Volunteer Dashboard</h3>
 
-    <div class="row g-4">
+<h5 class="mt-4">Available Tasks</h5>
+{% for task in available_tasks %}
+  <div class="card p-3 mb-3">
+    <p><strong>Food:</strong> {{ task.donation.food_name }}</p>
+    <p><strong>Pickup:</strong> {{ task.donation.pickup_location }}</p>
 
-        <div class="col-md-6">
-            <div class="dashboard-card h-100">
-                <div class="dashboard-icon">📍</div>
-                <h5>Pickup & Delivery Tasks</h5>
-                <p>
-                    See food pickups assigned to you and track delivery status.
-                </p>
-                <a href="{% url 'volunteer_tasks' %}" class="btn btn-info w-100">
-                    View Tasks
-                </a>
-            </div>
-        </div>
+    <a href="{% url 'accept_task' task.id %}" class="btn btn-success btn-sm">
+      Accept Task
+    </a>
+  </div>
+{% empty %}
+  <p>No available tasks.</p>
+{% endfor %}
 
-        <div class="col-md-6">
-            <div class="dashboard-card h-100">
-                <div class="dashboard-icon">📦</div>
-                <h5>Completed Deliveries</h5>
-                <p>
-                    Review deliveries you have successfully completed.
-                </p>
-                <a href="{% url 'volunteer_history' %}" class="btn btn-outline-info w-100">
-                History
-                </a>
+<h5 class="mt-4">My Tasks</h5>
+{% for task in my_tasks %}
+  <div class="card p-3 mb-3">
+    <span class="badge bg-info">{{ task.status }}</span>
 
-            </div>
-        </div>
+    {% if task.status == 'picked' %}
+      <a href="{% url 'complete_task' task.id %}" class="btn btn-primary btn-sm mt-2">
+        Mark as Delivered
+      </a>
+    {% endif %}
 
-    </div>
+    <a href="{% url 'cancel_task' task.id %}" class="btn btn-outline-danger btn-sm mt-2">
+      Cancel
+    </a>
+  </div>
+{% empty %}
+  <p>No tasks assigned.</p>
+{% endfor %}
+
+<a href="{% url 'completed_deliveries' %}" class="btn btn-outline-success mt-4">
+  View Completed Deliveries
+</a>
+
 </div>
-
 {% endblock %}
