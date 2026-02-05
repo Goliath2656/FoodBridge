@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h3 class="mb-4">📦 Completed Deliveries</h3>
+
+  {% if completed %}
+    <div class="row g-4">
+      {% for task in completed %}
+        <div class="col-md-6">
+          <div class="card shadow p-3">
+            <h6>Task #{{ task.id }}</h6>
+            <p><strong>Food:</strong> {{ task.donation.food_name }}</p>
+            <p><strong>Delivered To:</strong> {{ task.request.ngo.username }}</p>
+            <span class="badge bg-success">Delivered</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">
+      No completed deliveries yet.
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h3 class="mb-4">📍 Pickup & Delivery Tasks</h3>
+
+  <!-- AVAILABLE TASKS -->
+  <h5>Available Tasks</h5>
+  {% if tasks %}
+    <div class="row g-4 mb-5">
+      {% for task in tasks %}
+        <div class="col-md-6">
+          <div class="card shadow p-3">
+            <h6>Task #{{ task.id }}</h6>
+            <p><strong>Food:</strong> {{ task.donation.food_name }}</p>
+            <p><strong>Pickup:</strong> {{ task.donation.pickup_location }}</p>
+            <p><strong>Deliver To:</strong> {{ task.request.ngo.profile.address }}</p>
+
+            <a href="{% url 'accept_task' task.id %}"
+               class="btn btn-success btn-sm">
+              Accept Task
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-muted">No available tasks.</p>
+  {% endif %}
+
+  <h5>My Assigned Tasks</h5>
+  {% if my_tasks %}
+    <div class="row g-4">
+      {% for task in my_tasks %}
+        <div class="col-md-6">
+          <div class="card shadow p-3">
+            <h6>Task #{{ task.id }}</h6>
+            <span class="badge bg-info">{{ task.status }}</span>
+
+            {% if task.status == 'picked' %}
+              <a href="{% url 'complete_task' task.id %}"
+                 class="btn btn-primary btn-sm mt-2">
+                Mark as Delivered
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-muted">No tasks assigned to you.</p>
+  {% endif %}
+</div>
+{% endblock %}

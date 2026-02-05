@@ -18,7 +18,7 @@
                 <p>
                     See food pickups assigned to you and track delivery status.
                 </p>
-                <a href="#" class="btn btn-info w-100">
+                <a href="{% url 'volunteer_tasks' %}" class="btn btn-info w-100">
                     View Tasks
                 </a>
             </div>
@@ -31,9 +31,10 @@
                 <p>
                     Review deliveries you have successfully completed.
                 </p>
-                <a href="#" class="btn btn-outline-info w-100">
-                    History
+                <a href="{% url 'volunteer_history' %}" class="btn btn-outline-info w-100">
+                History
                 </a>
+
             </div>
         </div>
 

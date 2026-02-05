@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, ProfileForm
+from .models import DeliveryTask, Task
 
 
 
@@ -75,4 +76,49 @@ def dashboard(request):
         return redirect('home')
 
 
+@login_required
+def volunteer_tasks(request):
+    tasks = DeliveryTask.objects.filter(
+        status='pending'
+    )
+    my_tasks = DeliveryTask.objects.filter(
+        volunteer=request.user
+    )
+    return render(request, 'core/volunteer_tasks.html', {
+        'tasks': tasks,
+        'my_tasks': my_tasks
+    })
 
+
+@login_required
+def volunteer_history(request):
+    completed = DeliveryTask.objects.filter(
+        volunteer=request.user,
+        status='delivered'
+    )
+    return render(request, 'core/volunteer_history.html', {
+        'completed': completed
+    })
+
+@login_required
+def accept_task(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+
+    task.volunteer = request.user
+    task.status = 'accepted'
+    task.save()
+
+    return redirect('dashboard') 
+
+@login_required
+def complete_task(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+
+    
+    if task.volunteer != request.user:
+        return redirect('dashboard')
+
+    task.status = 'completed'
+    task.save()
+
+    return redirect('dashboard')
