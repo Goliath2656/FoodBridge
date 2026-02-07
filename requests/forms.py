@@ -17,3 +17,4 @@ class RequestForm(forms.ModelForm):
                 'class': 'form-control'
             }),
         }
+

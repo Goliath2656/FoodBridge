@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'core',
     'donations',
     'requests',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
